@@ -10,14 +10,14 @@ struct MermaidTestGraph: EditableGraph, JSONCodable {
     
     typealias InnerGraph = Graph<NodeID, EdgeID, NodeData, EdgeData>
     let innerGraph: InnerGraph
-    let mermaidGraphAttributes: GraphAttributes?
+    let mermaidGraphAttributes: GraphAttributes
 
     init() {
         self.mermaidGraphAttributes = .init()
         self.innerGraph = InnerGraph()
     }
     
-    private init(innerGraph: InnerGraph, attributes: GraphAttributes?) {
+    private init(innerGraph: InnerGraph, attributes: GraphAttributes) {
         self.innerGraph = innerGraph
         self.mermaidGraphAttributes = attributes
     }
@@ -45,7 +45,7 @@ struct MermaidTestGraph: EditableGraph, JSONCodable {
     }
 
     func withGraphData(transform: (inout GraphAttributes) -> Void) -> Self {
-        var attributes = mermaidGraphAttributes!
+        var attributes = mermaidGraphAttributes
         transform(&attributes)
         return Self(innerGraph: innerGraph, attributes: attributes)
     }
@@ -119,11 +119,11 @@ extension MermaidTestGraph {
 }
 
 extension MermaidTestGraph: MermaidEncodable {
-    func mermaidNodeAttributes(_ node: String) -> NodeAttributes? {
+    func mermaidNodeAttributes(_ node: String) -> NodeAttributes {
         try! nodeData(node)
     }
     
-    func mermaidEdgeAttributes(_ edge: String) -> EdgeAttributes? {
+    func mermaidEdgeAttributes(_ edge: String) -> EdgeAttributes {
         try! edgeData(edge)
     }
 }

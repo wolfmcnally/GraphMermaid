@@ -2,6 +2,41 @@ import XCTest
 @testable import WolfGraphMermaid
 
 final class WolfGraphMermaidTests: XCTestCase {
+    func testEdgeStyle() {
+        XCTAssertEqual(arrow(length: 1, style: .normal, tail: .none, head: .normal), "-->")
+        XCTAssertEqual(arrow(length: 2, style: .normal, tail: .none, head: .normal), "--->")
+        XCTAssertEqual(arrow(length: 3, style: .normal, tail: .none, head: .normal), "---->")
+        XCTAssertEqual(arrow(length: 1, style: .normal, tail: .none, head: .none), "---")
+        XCTAssertEqual(arrow(length: 2, style: .normal, tail: .none, head: .none), "----")
+        XCTAssertEqual(arrow(length: 3, style: .normal, tail: .none, head: .none), "-----")
+
+        XCTAssertEqual(arrow(length: 1, style: .dotted, tail: .none, head: .normal), "-.->")
+        XCTAssertEqual(arrow(length: 2, style: .dotted, tail: .none, head: .normal), "-..->")
+        XCTAssertEqual(arrow(length: 3, style: .dotted, tail: .none, head: .normal), "-...->")
+        XCTAssertEqual(arrow(length: 1, style: .dotted, tail: .none, head: .none), "-.-")
+        XCTAssertEqual(arrow(length: 2, style: .dotted, tail: .none, head: .none), "-..-")
+        XCTAssertEqual(arrow(length: 3, style: .dotted, tail: .none, head: .none), "-...-")
+
+        XCTAssertEqual(arrow(length: 1, style: .thick, tail: .none, head: .normal), "==>")
+        XCTAssertEqual(arrow(length: 2, style: .thick, tail: .none, head: .normal), "===>")
+        XCTAssertEqual(arrow(length: 3, style: .thick, tail: .none, head: .normal), "====>")
+        XCTAssertEqual(arrow(length: 1, style: .thick, tail: .none, head: .none), "===")
+        XCTAssertEqual(arrow(length: 2, style: .thick, tail: .none, head: .none), "====")
+        XCTAssertEqual(arrow(length: 3, style: .thick, tail: .none, head: .none), "=====")
+
+        XCTAssertEqual(arrow(length: 1, style: .normal, tail: .normal, head: .normal), "<-->")
+        XCTAssertEqual(arrow(length: 2, style: .normal, tail: .normal, head: .normal), "<--->")
+        XCTAssertEqual(arrow(length: 3, style: .normal, tail: .normal, head: .normal), "<---->")
+
+        XCTAssertEqual(arrow(length: 1, style: .normal, tail: .dot, head: .dot), "o--o")
+        XCTAssertEqual(arrow(length: 2, style: .normal, tail: .dot, head: .dot), "o---o")
+        XCTAssertEqual(arrow(length: 3, style: .normal, tail: .dot, head: .dot), "o----o")
+
+        XCTAssertEqual(arrow(length: 1, style: .dotted, tail: .ex, head: .ex), "x-.-x")
+        XCTAssertEqual(arrow(length: 2, style: .dotted, tail: .ex, head: .ex), "x-..-x")
+        XCTAssertEqual(arrow(length: 3, style: .dotted, tail: .ex, head: .ex), "x-...-x")
+    }
+    
     func testMermaid() throws {
         let graph = try MermaidTestGraph.makeDAG()
             .withGraphData {
@@ -12,7 +47,7 @@ final class WolfGraphMermaidTests: XCTestCase {
             .withNodeData("Z")
         {
             $0.label = "Zebra"
-//            $0.shape = .pentagon
+            $0.shape = .hexagon
         }
         .withNodeData("A") { _ in
 //            $0.color = .red
@@ -22,23 +57,23 @@ final class WolfGraphMermaidTests: XCTestCase {
         }
         .withEdgeData("AZ") {
             $0.label = "Green"
-//            $0.color = .green
+            $0.style = .dotted
         }
         .withEdgeData("JA") { _ in
 //            $0.style = .bold
         }
-        .withEdgeData("AC") { _ in
-//            $0.arrowDirection = .both
+        .withEdgeData("AC") {
+            $0.head = .none
         }
         .withEdgeData("BA") { _ in
 //            $0.style = .bold
         }
-        .withEdgeData("IK") { _ in
-//            $0.arrowHead = .box
+        .withEdgeData("IK") {
+            $0.length = 5
+            $0.head = .ex
         }
-        .withEdgeData("IC") { _ in
-//            $0.arrowDirection = .both
-//            $0.arrowTail = "olboxrbox"
+        .withEdgeData("IC") {
+            $0.tail = .dot
         }
 
         print(graph.mermaidFormat)

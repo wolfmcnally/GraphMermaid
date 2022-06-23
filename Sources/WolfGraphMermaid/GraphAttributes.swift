@@ -9,7 +9,7 @@ public enum LayoutDirection: String, Codable {
 }
 
 public struct GraphAttributes: Codable {
-    public var layoutDirection: LayoutDirection?
+    public var layoutDirection: LayoutDirection = .topToBottom
 
     public init() { }
 }

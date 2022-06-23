@@ -2,23 +2,9 @@ import Foundation
 import WolfGraph
 
 public protocol MermaidEncodable: ViewableGraph {
-    func mermaidNodeAttributes(_ node: NodeID) -> NodeAttributes?
-    func mermaidEdgeAttributes(_ edge: EdgeID) -> EdgeAttributes?
-    var mermaidGraphAttributes: GraphAttributes? { get }
-}
-
-public extension MermaidEncodable {
-    func mermaidNodeAttributes(_ node: NodeID) -> NodeAttributes? {
-        nil
-    }
-    
-    func mermaidEdgeAttributes(_ edge: EdgeID) -> EdgeAttributes? {
-        nil
-    }
-    
-    var mermaidGraphAttributes: GraphAttributes? {
-        nil
-    }
+    var mermaidGraphAttributes: GraphAttributes { get }
+    func mermaidNodeAttributes(_ node: NodeID) -> NodeAttributes
+    func mermaidEdgeAttributes(_ edge: EdgeID) -> EdgeAttributes
 }
 
 public extension MermaidEncodable {
@@ -27,8 +13,7 @@ public extension MermaidEncodable {
         
         let graphAttributes = mermaidGraphAttributes
         
-        let layoutDirection = graphAttributes?.layoutDirection ?? .topToBottom
-        result.append("graph \(layoutDirection.rawValue)")
+        result.append("graph \(graphAttributes.layoutDirection.rawValue)")
         
         for node in nodes {
             let attributes = mermaidNodeAttributes(node)
@@ -36,8 +21,9 @@ public extension MermaidEncodable {
             var lineComponents: [String] = ["\t"]
             lineComponents.append(node.description)
             
-            if let label = attributes?.label {
-                lineComponents.append(label.flanked("[", "]"))
+            if let label = attributes.label {
+                let delimiters = attributes.shape.delimiters
+                lineComponents.append(label.flanked(delimiters.0, delimiters.1))
             }
             
             result.append(lineComponents.joined())
@@ -49,9 +35,11 @@ public extension MermaidEncodable {
             var lineComponents: [String] = ["\t"]
 
             try! lineComponents.append(edgeTail(edge).description)
-            lineComponents.append(" -->")
+            lineComponents.append(" ")
 
-            if let label = attributes?.label {
+            lineComponents.append(arrow(length: attributes.length, style: attributes.style, tail: attributes.tail, head: attributes.head))
+
+            if let label = attributes.label {
                 lineComponents.append(label.flanked("|"))
             }
             

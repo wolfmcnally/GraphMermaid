@@ -3,6 +3,7 @@ import WolfGraph
 
 public struct NodeAttributes: ElementData {
     public var label: String?
+    public var shape: NodeShape = .rectangle
 
     public init() { }
     
