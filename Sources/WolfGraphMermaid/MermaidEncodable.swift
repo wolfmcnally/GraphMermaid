@@ -1,6 +1,9 @@
 import Foundation
 import WolfGraph
 
+// Docs: https://mermaid-js.github.io/mermaid/#/
+// Editor: https://mermaid.live/
+
 public protocol MermaidEncodable: ViewableGraph {
     var mermaidGraphAttributes: GraphAttributes { get }
     func mermaidNodeAttributes(_ node: NodeID) -> NodeAttributes
