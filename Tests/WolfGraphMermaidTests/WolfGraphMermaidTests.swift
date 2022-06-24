@@ -49,28 +49,32 @@ final class WolfGraphMermaidTests: XCTestCase {
             $0.label = "Zebra"
             $0.shape = .hexagon
         }
-        .withNodeData("A") { _ in
-//            $0.color = .red
+        .withNodeData("A") {
+            $0.fillColor = .red
         }
-        .withNodeData("J") { _ in
-//            $0.style = .filled
+        .withNodeData("J") {
+            $0.shape = .circle
+            $0.strokeColor = .blue
         }
         .withEdgeData("AZ") {
             $0.label = "Green"
-            $0.style = .dotted
+            $0.strokeColor = .green
+            $0.strokeWidth = 4
+            $0.length = 4
         }
-        .withEdgeData("JA") { _ in
-//            $0.style = .bold
+        .withEdgeData("JA") {
+            $0.style = .thick
         }
         .withEdgeData("AC") {
             $0.head = .none
         }
-        .withEdgeData("BA") { _ in
-//            $0.style = .bold
+        .withEdgeData("BA") {
+            $0.style = .thick
         }
         .withEdgeData("IK") {
             $0.length = 5
             $0.head = .ex
+            $0.style = .dotted
         }
         .withEdgeData("IC") {
             $0.tail = .dot
@@ -79,3 +83,4 @@ final class WolfGraphMermaidTests: XCTestCase {
         print(graph.mermaidFormat)
     }
 }
+

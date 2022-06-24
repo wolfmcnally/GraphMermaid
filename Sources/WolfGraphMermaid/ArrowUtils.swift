@@ -16,3 +16,20 @@ func arrow(length: Int = 1, style: EdgeStyle = .normal, tail tailShape: Arrowhea
     
     return result
 }
+
+func formatCustomStyle(fillColor: Color? = nil, strokeColor: Color?, strokeWidth: Double?) -> String? {
+    var components: [String] = []
+    if let fillColor {
+        components.append("fill:\(fillColor)")
+    }
+    if let strokeColor {
+        components.append("stroke:\(strokeColor)")
+    }
+    if let strokeWidth {
+        components.append("stroke-width:\(strokeWidth)px")
+    }
+    guard !components.isEmpty else {
+        return nil
+    }
+    return String(components.joined(separator: ","))
+}

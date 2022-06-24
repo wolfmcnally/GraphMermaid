@@ -15,6 +15,8 @@ public extension MermaidEncodable {
         
         result.append("graph \(graphAttributes.layoutDirection.rawValue)")
         
+        var customStyles: [String] = []
+        
         for node in nodes {
             let attributes = mermaidNodeAttributes(node)
             
@@ -27,9 +29,13 @@ public extension MermaidEncodable {
             }
             
             result.append(lineComponents.joined())
+            
+            if let customStyle = attributes.customStyle {
+                customStyles.append("\tstyle \(node) \(customStyle)")
+            }
         }
         
-        for edge in edges {
+        for (index, edge) in edges.enumerated() {
             let attributes = mermaidEdgeAttributes(edge)
             
             var lineComponents: [String] = ["\t"]
@@ -48,7 +54,13 @@ public extension MermaidEncodable {
             try! lineComponents.append(edgeHead(edge).description)
 
             result.append(lineComponents.joined())
+            
+            if let customStyle = attributes.customStyle {
+                customStyles.append("\tlinkStyle \(index) \(customStyle)")
+            }
         }
+        
+        result.append(contentsOf: customStyles)
         
         return result.joined(separator: "\n")
     }
