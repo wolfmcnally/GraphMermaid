@@ -1,6 +1,6 @@
 import Foundation
 
-public enum EdgeStyle: String, Codable {
+public enum EdgeStyle: String {
     case normal
     case dotted
     case thick

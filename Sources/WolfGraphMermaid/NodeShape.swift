@@ -1,6 +1,6 @@
 import Foundation
 
-public enum NodeShape: String, Codable {
+public enum NodeShape: String {
     case rectangle
     case rounded
     case stadium

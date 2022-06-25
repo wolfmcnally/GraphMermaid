@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Arrowhead: String, Codable {
+public enum Arrowhead: String {
     case normal
     case none
     case dot

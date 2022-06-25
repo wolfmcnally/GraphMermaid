@@ -2,7 +2,7 @@ import Foundation
 import WolfGraph
 import WolfGraphMermaid
 
-struct MermaidTestGraph: EditableGraph, JSONCodable {
+struct MermaidTestGraph: EditableGraph {
     typealias NodeID = String
     typealias EdgeID = String
     typealias NodeData = NodeAttributes
