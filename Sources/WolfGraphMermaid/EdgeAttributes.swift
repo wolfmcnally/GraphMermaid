@@ -1,7 +1,7 @@
 import Foundation
 import WolfGraph
 
-public struct EdgeAttributes: ElementData {
+public struct EdgeAttributes: DefaultConstructable {
     public var label: String?
     public var length: Int = 1
     public var style: EdgeStyle = .normal

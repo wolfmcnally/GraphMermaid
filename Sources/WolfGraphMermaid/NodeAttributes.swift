@@ -1,7 +1,7 @@
 import Foundation
 import WolfGraph
 
-public struct NodeAttributes: ElementData {
+public struct NodeAttributes: DefaultConstructable {
     public var label: String?
     public var shape: NodeShape = .rectangle
     public var fillColor: Color?
