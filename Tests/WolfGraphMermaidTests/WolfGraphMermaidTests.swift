@@ -82,8 +82,46 @@ final class WolfGraphMermaidTests: XCTestCase {
         .withEdgeData("IC") {
             $0.tail = .dot
         }
+        
+        let mermaid = """
+        graph LR
+            A[A]
+            B[B]
+            C[C]
+            D[D]
+            E[E]
+            F[F]
+            G[G]
+            H[H]
+            I[I]
+            J((J))
+            K[K]
+            Z{{Zebra}}
+            A ---|AC| C
+            A -->|AD| D
+            A -->|AE| E
+            A ----->|Green| Z
+            B ==>|BA| A
+            B -->|BC| C
+            B -->|BG| G
+            C -->|CD| D
+            E -->|ED| D
+            F -->|FD| D
+            F -->|FE| E
+            I -->|GI| G
+            H -->|HJ| J
+            B -->|IB| I
+            I o-->|IC| C
+            I -.....-x|IK| K
+            J ==>|JA| A
+            J -->|JE| E
+            J -->|JF| F
+            style A fill:red
+            style J stroke:blue
+            linkStyle 3 stroke:green,stroke-width:4.0px
+        """
 
-        print(graph.mermaidFormat)
+        XCTAssertEqual(graph.mermaidFormat.trim(), mermaid.trim())
     }
 }
 

@@ -13,35 +13,36 @@ public protocol MermaidEncodable: ViewableGraph {
 public extension MermaidEncodable {
     var mermaidFormat: String {
         var result: [String] = []
+        let indent = "    "
         
         let graphAttributes = mermaidGraphAttributes
         
         result.append("graph \(graphAttributes.layoutDirection.rawValue)")
         
         var customStyles: [String] = []
-        
+
         for node in nodes {
             let attributes = mermaidNodeAttributes(node)
-            
-            var lineComponents: [String] = ["\t"]
+
+            var lineComponents: [String] = [indent]
             lineComponents.append(node.description)
-            
+
             if let label = attributes.label {
                 let delimiters = attributes.shape.delimiters
                 lineComponents.append(label.flanked(delimiters.0, delimiters.1))
             }
-            
+
             result.append(lineComponents.joined())
-            
+
             if let customStyle = attributes.customStyle {
-                customStyles.append("\tstyle \(node) \(customStyle)")
+                customStyles.append("\(indent)style \(node) \(customStyle)")
             }
         }
-        
+
         for (index, edge) in edges.enumerated() {
             let attributes = mermaidEdgeAttributes(edge)
-            
-            var lineComponents: [String] = ["\t"]
+
+            var lineComponents: [String] = [indent]
 
             try! lineComponents.append(edgeTail(edge).description)
             lineComponents.append(" ")
@@ -51,18 +52,18 @@ public extension MermaidEncodable {
             if let label = attributes.label {
                 lineComponents.append(label.flanked("|"))
             }
-            
+
             lineComponents.append(" ")
 
             try! lineComponents.append(edgeHead(edge).description)
 
             result.append(lineComponents.joined())
-            
+
             if let customStyle = attributes.customStyle {
-                customStyles.append("\tlinkStyle \(index) \(customStyle)")
+                customStyles.append("\(indent)linkStyle \(index) \(customStyle)")
             }
         }
-        
+
         result.append(contentsOf: customStyles)
         
         return result.joined(separator: "\n")
