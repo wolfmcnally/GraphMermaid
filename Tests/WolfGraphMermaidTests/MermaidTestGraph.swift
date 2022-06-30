@@ -9,21 +9,21 @@ struct MermaidTestGraph: EditableGraph {
     typealias EdgeData = EdgeAttributes
     
     typealias InnerGraph = Graph<NodeID, EdgeID, NodeData, EdgeData>
-    let innerGraph: InnerGraph
+    let graph: InnerGraph
     let mermaidGraphAttributes: GraphAttributes
 
     init() {
         self.mermaidGraphAttributes = .init()
-        self.innerGraph = InnerGraph()
+        self.graph = InnerGraph()
     }
     
-    private init(innerGraph: InnerGraph, attributes: GraphAttributes) {
-        self.innerGraph = innerGraph
+    private init(graph: InnerGraph, attributes: GraphAttributes) {
+        self.graph = graph
         self.mermaidGraphAttributes = attributes
     }
     
-    func copySettingInnerGraph(_ innerGraph: InnerGraph) -> Self {
-        Self(innerGraph: innerGraph, attributes: mermaidGraphAttributes)
+    func copySettingInner(graph: InnerGraph) -> Self {
+        Self(graph: graph, attributes: mermaidGraphAttributes)
     }
 
     init(edges: [(String, String, String)]) throws {
@@ -41,13 +41,13 @@ struct MermaidTestGraph: EditableGraph {
             graph = try graph.newEdge(label, tail: tail, head: head, data: .init(label: label))
         }
         
-        self.innerGraph = graph
+        self.graph = graph
     }
 
     func withGraphData(transform: (inout GraphAttributes) -> Void) -> Self {
         var attributes = mermaidGraphAttributes
         transform(&attributes)
-        return Self(innerGraph: innerGraph, attributes: attributes)
+        return Self(graph: graph, attributes: attributes)
     }
 }
 
