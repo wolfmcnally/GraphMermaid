@@ -1,5 +1,5 @@
 import Foundation
-import WolfGraph
+import Graph
 
 public struct EdgeAttributes: DefaultConstructable {
     public var label: String?

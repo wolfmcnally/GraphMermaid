@@ -1,5 +1,5 @@
 import Foundation
-import WolfGraph
+import Graph
 
 // Docs: https://mermaid-js.github.io/mermaid/#/
 // Editor: https://mermaid.live/

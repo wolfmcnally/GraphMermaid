@@ -1,3 +1,3 @@
-# WolfGraphMermaid
+# GraphMermaid
 
 A description of this package.

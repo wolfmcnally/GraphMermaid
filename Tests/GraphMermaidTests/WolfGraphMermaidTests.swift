@@ -1,10 +1,10 @@
 import XCTest
-@testable import WolfGraphMermaid
+@testable import GraphMermaid
 
 // Docs: https://mermaid-js.github.io/mermaid/#/
 // Editor: https://mermaid.live/
 
-final class WolfGraphMermaidTests: XCTestCase {
+final class GraphMermaidTests: XCTestCase {
     func testEdgeStyle() {
         XCTAssertEqual(arrow(length: 1, style: .normal, tail: .none, head: .normal), "-->")
         XCTAssertEqual(arrow(length: 2, style: .normal, tail: .none, head: .normal), "--->")

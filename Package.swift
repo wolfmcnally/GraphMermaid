@@ -3,23 +3,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "WolfGraphMermaid",
+    name: "GraphMermaid",
     platforms: [.macOS(.v12), .iOS(.v15)],
     products: [
         .library(
-            name: "WolfGraphMermaid",
-            targets: ["WolfGraphMermaid"]),
+            name: "GraphMermaid",
+            targets: ["GraphMermaid"]),
     ],
     dependencies: [
         .package(url: "https://github.com/wolfmcnally/WolfBase.git", .upToNextMajor(from: "4.0.0")),
-        .package(path: "../WolfGraph")
+        .package(path: "../Graph")
     ],
     targets: [
         .target(
-            name: "WolfGraphMermaid",
-            dependencies: ["WolfGraph", "WolfBase"]),
+            name: "GraphMermaid",
+            dependencies: ["Graph", "WolfBase"]),
         .testTarget(
-            name: "WolfGraphMermaidTests",
-            dependencies: ["WolfGraphMermaid"]),
+            name: "GraphMermaidTests",
+            dependencies: ["GraphMermaid"]),
     ]
 )

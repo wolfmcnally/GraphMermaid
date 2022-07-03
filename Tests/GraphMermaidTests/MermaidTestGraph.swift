@@ -1,6 +1,6 @@
 import Foundation
-import WolfGraph
-import WolfGraphMermaid
+import Graph
+import GraphMermaid
 
 struct MermaidTestGraph: EditableGraph, EditableGraphWrapper {
     typealias NodeID = String
