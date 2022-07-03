@@ -41,45 +41,44 @@ final class WolfGraphMermaidTests: XCTestCase {
     }
     
     func testMermaid() throws {
-        let graph = try MermaidTestGraph.makeDAG()
-            .withGraphData {
-                $0.layoutDirection = .leftToRight
-            }
-            .newNode("Z")
-            .newEdge("AZ", tail: "A", head: "Z", data: .init(label: "AZ"))
-            .withNodeData("Z")
-        {
+        var graph = MermaidTestGraph.makeDAG()
+        graph.withGraphData {
+            $0.layoutDirection = .leftToRight
+        }
+        try graph.newNode("Z")
+        try graph.newEdge("AZ", tail: "A", head: "Z", data: .init(label: "AZ"))
+        try graph.withNodeData("Z") {
             $0.label = "Zebra"
             $0.shape = .hexagon
         }
-        .withNodeData("A") {
+        try graph.withNodeData("A") {
             $0.fillColor = .red
         }
-        .withNodeData("J") {
+        try graph.withNodeData("J") {
             $0.shape = .circle
             $0.strokeColor = .blue
         }
-        .withEdgeData("AZ") {
+        try graph.withEdgeData("AZ") {
             $0.label = "Green"
             $0.strokeColor = .green
             $0.strokeWidth = 4
             $0.length = 4
         }
-        .withEdgeData("JA") {
+        try graph.withEdgeData("JA") {
             $0.style = .thick
         }
-        .withEdgeData("AC") {
+        try graph.withEdgeData("AC") {
             $0.head = .none
         }
-        .withEdgeData("BA") {
+        try graph.withEdgeData("BA") {
             $0.style = .thick
         }
-        .withEdgeData("IK") {
+        try graph.withEdgeData("IK") {
             $0.length = 5
             $0.head = .ex
             $0.style = .dotted
         }
-        .withEdgeData("IC") {
+        try graph.withEdgeData("IC") {
             $0.tail = .dot
         }
         

@@ -2,15 +2,15 @@ import Foundation
 import WolfGraph
 import WolfGraphMermaid
 
-struct MermaidTestGraph: EditableGraph {
+struct MermaidTestGraph: EditableGraph, EditableGraphWrapper {
     typealias NodeID = String
     typealias EdgeID = String
     typealias NodeData = NodeAttributes
     typealias EdgeData = EdgeAttributes
     
     typealias InnerGraph = Graph<NodeID, EdgeID, NodeData, EdgeData>
-    let graph: InnerGraph
-    let mermaidGraphAttributes: GraphAttributes
+    var graph: InnerGraph
+    var mermaidGraphAttributes: GraphAttributes
 
     init() {
         self.mermaidGraphAttributes = .init()
@@ -33,21 +33,19 @@ struct MermaidTestGraph: EditableGraph {
         for edge in edges {
             let (label, tail, head) = edge
             if graph.hasNoNode(tail) {
-                graph = try graph.newNode(tail, data: .init(label: tail))
+                try graph.newNode(tail, data: .init(label: tail))
             }
             if graph.hasNoNode(head) {
-                graph = try graph.newNode(head, data: .init(label: head))
+                try graph.newNode(head, data: .init(label: head))
             }
-            graph = try graph.newEdge(label, tail: tail, head: head, data: .init(label: label))
+            try graph.newEdge(label, tail: tail, head: head, data: .init(label: label))
         }
         
         self.graph = graph
     }
 
-    func withGraphData(transform: (inout GraphAttributes) -> Void) -> Self {
-        var attributes = mermaidGraphAttributes
-        transform(&attributes)
-        return Self(graph: graph, attributes: attributes)
+    mutating func withGraphData(transform: (inout GraphAttributes) -> Void) {
+        transform(&mermaidGraphAttributes)
     }
 }
 
