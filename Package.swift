@@ -11,8 +11,8 @@ let package = Package(
             targets: ["GraphMermaid"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/wolfmcnally/WolfBase.git", .upToNextMajor(from: "4.0.0")),
-        .package(url: "https://github.com/FlyingLogic/Graph.git", .upToNextMajor(from: "0.1.0"))
+        .package(url: "https://github.com/WolfMcNally/WolfBase.git", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/WolfMcNally/Graph.git", .upToNextMajor(from: "0.1.0"))
     ],
     targets: [
         .target(

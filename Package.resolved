@@ -3,7 +3,7 @@
     {
       "identity" : "graph",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/FlyingLogic/Graph.git",
+      "location" : "https://github.com/WolfMcNally/Graph.git",
       "state" : {
         "revision" : "45d3c6ba067424cb96343bf0dc2e30316b99686e",
         "version" : "0.1.0"
