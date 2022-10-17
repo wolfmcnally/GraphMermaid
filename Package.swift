@@ -12,7 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/wolfmcnally/WolfBase.git", .upToNextMajor(from: "4.0.0")),
-        .package(url: "https://github.com/FlyingLogic/Graph.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/FlyingLogic/Graph.git", .upToNextMajor(from: "0.1.0"))
     ],
     targets: [
         .target(
