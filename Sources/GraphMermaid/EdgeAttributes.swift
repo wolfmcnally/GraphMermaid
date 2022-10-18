@@ -9,6 +9,7 @@ public struct EdgeAttributes: DefaultConstructable {
     public var head: Arrowhead = .normal
     public var strokeColor: Color?
     public var strokeWidth: Double?
+    public var dashArray: [Double] = []
 
     public init() { }
 
@@ -17,6 +18,6 @@ public struct EdgeAttributes: DefaultConstructable {
     }
     
     public var customStyle: String? {
-        formatCustomStyle(strokeColor: strokeColor, strokeWidth: strokeWidth)
+        formatCustomStyle(strokeColor: strokeColor, strokeWidth: strokeWidth, dashArray: dashArray)
     }
 }

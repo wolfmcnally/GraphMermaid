@@ -17,7 +17,7 @@ func arrow(length: Int = 1, style: EdgeStyle = .normal, tail tailShape: Arrowhea
     return result
 }
 
-func formatCustomStyle(fillColor: Color? = nil, strokeColor: Color?, strokeWidth: Double?) -> String? {
+func formatCustomStyle(fillColor: Color? = nil, strokeColor: Color?, strokeWidth: Double?, dashArray: [Double]) -> String? {
     var components: [String] = []
     if let fillColor {
         components.append("fill:\(fillColor)")
@@ -27,6 +27,9 @@ func formatCustomStyle(fillColor: Color? = nil, strokeColor: Color?, strokeWidth
     }
     if let strokeWidth {
         components.append("stroke-width:\(strokeWidth)px")
+    }
+    if !dashArray.isEmpty {
+        components.append("stroke-dasharray:\(dashArray.map { String($0) }.joined(separator: " "))")
     }
     guard !components.isEmpty else {
         return nil

@@ -7,6 +7,7 @@ public struct NodeAttributes: DefaultConstructable {
     public var fillColor: Color?
     public var strokeColor: Color?
     public var strokeWidth: Double?
+    public var dashArray: [Double] = []
 
     public init() { }
     
@@ -15,6 +16,6 @@ public struct NodeAttributes: DefaultConstructable {
     }
     
     public var customStyle: String? {
-        formatCustomStyle(fillColor: fillColor, strokeColor: strokeColor, strokeWidth: strokeWidth)
+        formatCustomStyle(fillColor: fillColor, strokeColor: strokeColor, strokeWidth: strokeWidth, dashArray: dashArray)
     }
 }

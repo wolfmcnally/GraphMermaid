@@ -4,11 +4,24 @@ import Graph
 // Docs: https://mermaid-js.github.io/mermaid/#/
 // Editor: https://mermaid.live/
 
-public protocol MermaidEncodable: ViewableGraph {
+public protocol MermaidElementID: ElementID {
+    var mermaidElementID: String { get }
+}
+
+extension MermaidElementID {
+    public var mermaidElementID: String { description }
+}
+
+public protocol MermaidEncodable: ViewableGraph
+where NodeID: MermaidElementID, EdgeID: MermaidElementID
+{
     var mermaidGraphAttributes: GraphAttributes { get }
     func mermaidNodeAttributes(_ node: NodeID) -> NodeAttributes
     func mermaidEdgeAttributes(_ edge: EdgeID) -> EdgeAttributes
 }
+
+extension Int: MermaidElementID { }
+extension String: MermaidElementID { }
 
 public extension MermaidEncodable {
     var mermaidFormat: String {
@@ -25,7 +38,7 @@ public extension MermaidEncodable {
             let attributes = mermaidNodeAttributes(node)
 
             var lineComponents: [String] = [indent]
-            lineComponents.append(node.description)
+            lineComponents.append(node.mermaidElementID)
 
             if let label = attributes.label {
                 let delimiters = attributes.shape.delimiters
@@ -44,7 +57,7 @@ public extension MermaidEncodable {
 
             var lineComponents: [String] = [indent]
 
-            try! lineComponents.append(edgeTail(edge).description)
+            try! lineComponents.append(edgeTail(edge).mermaidElementID)
             lineComponents.append(" ")
 
             lineComponents.append(arrow(length: attributes.length, style: attributes.style, tail: attributes.tail, head: attributes.head))
@@ -55,7 +68,7 @@ public extension MermaidEncodable {
 
             lineComponents.append(" ")
 
-            try! lineComponents.append(edgeHead(edge).description)
+            try! lineComponents.append(edgeHead(edge).mermaidElementID)
 
             result.append(lineComponents.joined())
 
