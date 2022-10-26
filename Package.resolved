@@ -5,17 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/WolfMcNally/Graph.git",
       "state" : {
-        "revision" : "7cf8ae226dff8c0cddeb1fd913c4bb3fd2a3e472",
-        "version" : "0.2.0"
+        "revision" : "bfa9328e60b0145a28392e4566c941806603ef72",
+        "version" : "0.3.0"
       }
     },
     {
       "identity" : "wolfbase",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wolfmcnally/WolfBase.git",
+      "location" : "https://github.com/WolfMcNally/WolfBase.git",
       "state" : {
-        "revision" : "4aa155e69d2c4d8bcc17a8840b7a178882fcbfb1",
-        "version" : "4.2.0"
+        "revision" : "51846810911c51dfe38514a5b5454220c59b4a79",
+        "version" : "4.5.2"
       }
     }
   ],
