@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/WolfMcNally/Graph.git",
       "state" : {
-        "revision" : "04538aebf46f120dcce1392a215a7a850c45b4e6",
-        "version" : "0.7.0"
+        "revision" : "7edbe3d678d78ab773c64f0c88ce2ce2762dac62",
+        "version" : "1.0.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms.git",
       "state" : {
-        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
-        "version" : "1.0.0"
+        "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
+        "version" : "1.2.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wolfmcnally/WolfBase.git",
       "state" : {
-        "revision" : "a739d553c600a203c4f84eb26ceb87d38b298456",
-        "version" : "5.0.0"
+        "revision" : "91c8cad45e6325ab76db1b5b60c5f6616d52a0cb",
+        "version" : "6.0.0"
       }
     }
   ],
