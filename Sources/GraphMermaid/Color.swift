@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Color: Hashable {
+public struct Color: Hashable, Sendable {
     public let name: String
     
     public init(_ name: String) {
